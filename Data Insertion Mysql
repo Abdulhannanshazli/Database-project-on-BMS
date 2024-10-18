@@ -1,0 +1,48 @@
+#insertion data for Mysql DB-Project
+
+-- Inserting into Donor
+INSERT INTO Donor (Name, Blood_Type, Contact_details, Availability) VALUES 
+('Abdul Hannan Shazli', 'O+', '1234-567890', 'Available'),
+('Ali Khan', 'A+', '9876-543211', 'Available'),
+('Fatima Bibi', 'B-', '4567-890123', 'Unavailable'),
+('Sara Ahmed', 'AB+', '6789-012345', 'Available'),
+('Tariq Malik', 'O-', '2345-678901', 'Available'),
+('Nadia Hussain', 'A-', '3210-987654', 'Unavailable'),
+('Khalid Javed', 'B+', '5432-109876', 'Available'),
+('Aisha Noor', 'AB-', '6543-210987', 'Available'),
+('Zain Abbas', 'O+', '7890-123456', 'Unavailable'),
+('Imran Shah', 'A+', '8901-234567', 'Available');
+
+-- Inserting into Hospital
+INSERT INTO Hospital (Name, Location, Contact_Details, Blood_Availability, Recipient_id) VALUES 
+('General Hospital', 'Karachi', 'genhospital@example.com', 'Available', 1),
+('Civil Hospital', 'Lahore', 'civilhospital@example.com', 'Available', 2),
+('Peshawar Medical Complex', 'Peshawar', 'peshawarmed@example.com', 'Not Available', 3),
+('Multan Medical Center', 'Multan', 'multanmedical@example.com', 'Available', 4);
+
+-- Inserting into Blood Bank
+INSERT INTO Blood_Bank (Name, Location, Blood_Stock) VALUES 
+('Karachi Blood Bank', 'Karachi', 200),
+('Lahore Blood Bank', 'Lahore', 150),
+('Peshawar Blood Bank', 'Peshawar', 100),
+('Multan Blood Bank', 'Multan', 80);
+
+-- Inserting into hospital_BloodBank
+INSERT INTO hospital_BloodBank (hospital_id, Bank_id) VALUES 
+(1, 1),  -- General Hospital with Karachi Blood Bank
+(2, 2),  -- Civil Hospital with Lahore Blood Bank
+(3, 3),  -- Peshawar Medical Complex with Peshawar Blood Bank
+(4, 4);  -- Multan Medical Center with Multan Blood Bank
+
+-- Inserting into Donor_BloodBank
+INSERT INTO Donor_BloodBank (donor_id, Bank_id) VALUES 
+(1, 1),  -- Abdul Hannan Shazli with Karachi Blood Bank
+(2, 2),  -- Ali Khan with Lahore Blood Bank
+(3, 3),  -- Fatima Bibi with Peshawar Blood Bank
+(4, 4),  -- Sara Ahmed with Multan Blood Bank
+(5, 1),  -- Tariq Malik with Karachi Blood Bank
+(6, 2),  -- Nadia Hussain with Lahore Blood Bank
+(7, 3),  -- Khalid Javed with Peshawar Blood Bank
+(8, 4),  -- Aisha Noor with Multan Blood Bank
+(9, 1),  -- Zain Abbas with Karachi Blood Bank
+(10, 2); -- Imran Shah with Lahore Blood Bank
