@@ -1,0 +1,85 @@
+-- Mysql Quries for creating the tables
+
+-- Table for Recipient
+CREATE TABLE Recipient (
+    Recipient_id INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100),
+    Blood_Type VARCHAR(10),
+    Contact_details VARCHAR(255),
+    Blood_Requirement VARCHAR(100)
+);
+
+-- Table for Hospital
+CREATE TABLE Hospital (
+    hospital_id INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100),
+    location VARCHAR(255),
+    Contact_Details VARCHAR(255),
+    Blood_Availability VARCHAR(50),
+    Recipient_id INT,
+    FOREIGN KEY (Recipient_id) REFERENCES Recipient(Recipient_id)
+);
+
+-- Table for Blood Bank
+CREATE TABLE Blood_Bank (
+    Bank_id INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100),
+    location VARCHAR(255),
+    Blood_Stock INT
+);
+
+-- Table for Hospital and Blood Bank Relationship
+CREATE TABLE hospital_BloodBank (
+    hospital_id INT,
+    Bank_id INT,
+    PRIMARY KEY (hospital_id, Bank_id),
+    FOREIGN KEY (hospital_id) REFERENCES Hospital(hospital_id),
+    FOREIGN KEY (Bank_id) REFERENCES Blood_Bank(Bank_id)
+);
+
+-- Table for Transfusion Record
+CREATE TABLE Transfusion_Record (
+    Transfusion_id INT PRIMARY KEY AUTO_INCREMENT,
+    Date DATE,
+    Blood_Type VARCHAR(10),
+    Quantity INT,
+    Recipient_id INT,
+    Hospital_id INT,
+    FOREIGN KEY (Recipient_id) REFERENCES Recipient(Recipient_id),
+    FOREIGN KEY (Hospital_id) REFERENCES Hospital(hospital_id)
+);
+
+-- Table for Blood Donation Organization
+CREATE TABLE Blood_Donation_ORG (
+    BD_ORG_id INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100),
+    Contact_Details VARCHAR(255),
+    Location VARCHAR(255)
+);
+
+-- Table for Donor
+CREATE TABLE Donor (
+    Donor_id INT PRIMARY KEY AUTO_INCREMENT,
+    Name VARCHAR(100),
+    Blood_type VARCHAR(10),
+    Contact_details VARCHAR(255),
+    Last_donation DATE
+);
+
+-- Table for Donor and Blood Donation Organization Relationship
+CREATE TABLE BD_Org_Donor (
+    BD_ORG_id INT,
+    Donor_id INT,
+    PRIMARY KEY (BD_ORG_id, Donor_id),
+    FOREIGN KEY (BD_ORG_id) REFERENCES Blood_Donation_ORG(BD_ORG_id),
+    FOREIGN KEY (Donor_id) REFERENCES Donor(Donor_id)
+);
+
+-- Table for Transfusion and Blood Bank Relationship
+CREATE TABLE trans_Blood_Bank (
+    Transfusion_id INT,
+    Bank_id INT,
+    PRIMARY KEY (Transfusion_id, Bank_id),
+    FOREIGN KEY (Transfusion_id) REFERENCES Transfusion_Record(Transfusion_id),
+    FOREIGN KEY (Bank_id) REFERENCES Blood_Bank(Bank_id)
+);
